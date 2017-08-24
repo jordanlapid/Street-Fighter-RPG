@@ -1,0 +1,21 @@
+.container-fluid {
+	text-align:center;
+}
+
+
+.portrait {
+	height:200px;
+	width:200px;
+}
+
+.staging {
+	height:300px;
+}
+
+.row {
+	margin-bottom:10px;
+}
+
+.attack {
+
+}
