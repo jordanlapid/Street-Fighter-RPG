@@ -30,6 +30,7 @@ var cWins = 0;
 var dGames = 0;
 
 
+
 function player1Damage(min, max) {
 	return Math.round(Math.random() * (max - min) + min);
 }
@@ -40,38 +41,62 @@ function player2Damage(min, max) {
 
 function dealDamage(){
 	if(player1Health > 0 && player2Health > 0){
-		player1Health = player1Health - player2Damage(5,30);
-		player2Health = player2Health - player1Damage(5,30);
+		var p1Damage = player1Damage(1,50)
+		var p2Damage = player1Damage(1,50);
+		player1Health = player1Health - p2Damage;
+		player2Health = player2Health - p1Damage;
 		$(".player1 .portrait .health").html(player1Health);
 		$(".player2 .portrait .health").html(player2Health);
+		$(".sentence1").html($(player1Element).attr("class").split(' ')[0] + " does " + p1Damage + " to " + $(player2Element).attr("class").split(' ')[0]);
+		$(".sentence2").html($(player2Element).attr("class").split(' ')[0] + " does " + p2Damage + " to " + $(player1Element).attr("class").split(' ')[0]);
 	}
 }
 
-function resetGame(){
 
-}
+$(document).ready(function() {
 
-function nextRound(){
+$(document).keypress(function(keyHit) {
+	
+	if(keyHit.which === 13) {
+		if(player2Health <=0 && player1Health <= 0){
+			player1Health = 100;
+			player2Health = 100;
+			$(".player1 .portrait .health").html(player1Health);
+			$(".player2 .portrait .health").html(player2Health);
+			$(".instructions").html("Ready");
+		} else if (player1Health <= 0) {
 
-}
+			location.reload();
 
-function nextMatch(){
+			$(".pWins").html(storeWins);
+			$(".cWins").html(storeLosses);
+			$(".dGames").html(storeDraws);
 
-}
+		} else {
+			player1Health = 100;
+			player2Health = 100;
+			$(".player1 .portrait .health").html(player1Health);
+			$(".instructions").html("Select another opponent!");
+			divLength2 = $(".player2").children().length;
+			}
+		}
 
-$( document ).ready(function() {
+});
 
 $(".portrait").click(function() {
 
 	if(divLength1 === 0 && divLength2 === 0) {
 		$(this).appendTo(".player1");
+		console.log(this);
 		player1Element = this;
 	} else if(divLength1 === 1 && divLength2 === 0) {
 		$(this).appendTo(".player2");
 		player2Element = this;
+		console.log(this);
 	} else if(divLength1 === 0 && divLength2 === 1) {
 		$(this).appendTo(".player1");
 		player1Element = this;
+		console.log(this);
 	} else {
 
 	}
@@ -91,30 +116,47 @@ $(".attack").click(function(){
 	if(divLength1 === 0 && divLength2 === 0) {
 		$(".instructions").html("Choose Player 1"); 
 	} else if(divLength1 === 1 && divLength2 === 0) {
+		if(pWins === 0){
 		$(".instructions").html("Choose CPU"); 
+	}
 	} else if(divLength1 === 0 && divLength2 === 1) {
 		$(".instructions").html("Choose Player 1"); 
 	} else {
-		$(".instructions").html("Round 1. Fight!");
-		dealDamage();
+		if(pWins === 0){
+			$(".instructions").html("Match 1. Fight!");
+			dealDamage();
+		} else if (pWins === 1){
+			$(".instructions").html("Match 2. Fight!");
+			dealDamage();
+		} else if (pWins === 2) {
+			$(".instructions").html("Final Match. Fight!");
+			dealDamage();
+		}
 	}
 
-	if(player1Health > 0 || player2Health > 0){
-
 		if(player2Health <=0 && player1Health <= 0) {
-			$(".instructions").html("Draw!")
+			$(".instructions").html("Draw! Press Enter to try again.")
 			dGames++;
 			$(".dGames").html(dGames)
 		} else if (player2Health <= 0){
-			$(".instructions").html("Player 1 Wins!")
-			pWins++;
-			$(".pWins").html(pWins)
+			if(pWins < 2) {
+				$(".instructions").html("Player 1 Wins! Press Enter to Continue.")
+				pWins++;
+				$(".pWins").html(pWins)
+				player2Element.remove();
+			} else if (pWins >= 2){
+				pWins++;
+				$(".instructions").html("GG. You Win!")
+				$(".pWins").html(pWins)
+				player2Element.remove();
+
+			}
 		} else if (player1Health <= 0) {
-			$(".instructions").html("CPU Wins!")
+			$(".instructions").html("CPU Wins! Press Enter to Start Over.")
 			cWins++;
 			$(".cWins").html(cWins)
+			player1Element.remove();
 		}
-	}
 
 });
 
