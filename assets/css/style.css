@@ -1,3 +1,8 @@
+body {
+    background-color: #000077;
+    color:white;
+}
+
 .container-fluid {
 	text-align:center;
 }
@@ -37,4 +42,13 @@
 	bottom: -40px;
 	text-align:center;
 	width:100%;
+}
+
+
+.title {
+	zoom:75%;
+}
+
+.footer {
+	margin-top:100px;
 }

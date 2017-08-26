@@ -28,7 +28,30 @@ var player2Element;
 var pWins = 0;
 var cWins = 0;
 var dGames = 0;
+var theme = new Audio("assets/sounds/theme.mp3");
+var effects = new Audio("assets/sounds/effects.mp3");
+var effects2 = new Audio("assets/sounds/effects2.mp3");
+var charselect = new Audio("assets/sounds/charselect.mp3");
 
+charselect.play();
+
+function selectSound (){
+	effects.currentTime = 4.7
+	effects.play();
+	setTimeout(function(){
+		effects.pause();
+		effects.currentTime = 0;
+	}, 1500);
+}
+
+function selectSound2 (){
+	effects2.currentTime = 4.7
+	effects2.play();
+	setTimeout(function(){
+		effects2.pause();
+		effects2.currentTime = 0;
+	}, 1500);
+}
 
 
 function player1Damage(min, max) {
@@ -68,9 +91,6 @@ $(document).keypress(function(keyHit) {
 
 			location.reload();
 
-			$(".pWins").html(storeWins);
-			$(".cWins").html(storeLosses);
-			$(".dGames").html(storeDraws);
 
 		} else {
 			player1Health = 100;
@@ -87,16 +107,16 @@ $(".portrait").click(function() {
 
 	if(divLength1 === 0 && divLength2 === 0) {
 		$(this).appendTo(".player1");
-		console.log(this);
 		player1Element = this;
+		selectSound();
 	} else if(divLength1 === 1 && divLength2 === 0) {
 		$(this).appendTo(".player2");
 		player2Element = this;
-		console.log(this);
+		selectSound2();
 	} else if(divLength1 === 0 && divLength2 === 1) {
 		$(this).appendTo(".player1");
 		player1Element = this;
-		console.log(this);
+		selectSound();
 	} else {
 
 	}
@@ -106,6 +126,11 @@ $(".portrait").click(function() {
 
 	if(divLength1 === 1 && divLength2 === 1){
 		$(".instructions").html("Ready");
+		
+		setTimeout(function(){
+			charselect.pause();
+			theme.play();
+		}, 1350);
 	}
 
 
