@@ -4,58 +4,74 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-	<title>Street Fighter 2 RPG</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+	<title>Street Fighter 2</title>
 </head>
 <body>
 <div class="container-fluid">
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Street Fighter 2 RPG</h1>
+			<h1>Street Fighter 2</h1>
 		</div>
 	</div>
 	<div class="container">
 		<div class="row staging">
-			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<h1>Player 1</h1>
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<h1>Player</h1>
 				<div class="player1">
-					<img class="portrait" src="assets/images/guile.png" alt="guile">
 				</div>
 			</div>
-			<div class ="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<h1>Player 2</h1>
+			<div class ="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<h3 class="instructions">Player Select</h3>
+					<div class="row sub-row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<button type="button" class="btn btn-danger text-center attack">Attack</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h5>Player Wins:<span class="pWins"></span></h5>
+						<h5>CPU Wins:<span class="cWins"></span></h5>
+						<h5>Draws:<span class="dGames"></span></h5>
+						</div>
+					</div>
+			</div>	
+			<div class ="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<h1>CPU</h1>
 				<div class="player2">
-					<img class="portrait" src="assets/images/guile.png" alt="guile">
 				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row attack">
-			<div class ="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<a href="#" class="btn btn-danger">Attack</a>
 			</div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<div class="guile">
-					<img class="portrait" src="assets/images/guile.png" alt="guile">
+				<div class="guile portrait">
+					<img class="picture" src="assets/images/guile.png" alt="guile">
+					<p class="name">Guile</p>
+					<p class="health">100</p>
 				</div>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<div class="ryu">
-					<img class="portrait"  src="assets/images/ryu.png" alt="ryu">
+				<div class="ryu portrait">
+					<img class="picture"  src="assets/images/ryu.png" alt="ryu">
+					<p class="name">Ryu</p>
+					<p class="health">100</p>
 				</div>
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<div class="chun">
-					<img class="portrait"  src="assets/images/chun.png" alt="chun">
+				<div class="chun portrait">
+					<img class="picture"  src="assets/images/chun.png" alt="chun">
+					<p class="name">Chun-Li</p>
+					<p class="health">100</p>
 				</div>	
 			</div>
 			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<div class="blanka">
-					<img class="portrait"  src="assets/images/blanka.png" alt="blanka">
+				<div class="blanka portrait">
+					<img class="picture"  src="assets/images/blanka.png" alt="blanka">
+					<p class="name">Blanka</p>
+					<p class="health">100</p>
 				</div>
 			</div>
 		</div>
@@ -64,5 +80,3 @@
 
 </body>
 </html>
-
-<script type="text/javascript" src="assets/javascript/game.js"></script>
